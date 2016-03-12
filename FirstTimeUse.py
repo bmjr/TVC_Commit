@@ -21,7 +21,7 @@ def main():
 			break
 
 	f = open('Token',"a")
-	f.write("\n" + boardId)
+	f.write("," + boardId)
 
 	return [trello, boardId]
 	

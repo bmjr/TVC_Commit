@@ -1,5 +1,6 @@
 import shell_engine
 import add_task
+import userpass
 from trello import TrelloApi
 
 appKey = "bbe4f72dcc11de483fec87b87db05532"
@@ -11,7 +12,8 @@ def view():
 
 def add():
     print("add")
-    add_task.newTask(init(), getBoard())
+    initArray = init()
+    add_task.newTask(initArray[0], initArray[1])
 
 
 def start():
@@ -27,13 +29,12 @@ def review():
 
 
 def init():
-    tr = TrelloApi(appKey)
-    print("Please visit the following website and copy the key:")
-    print('https://trello.com/1/authorize?key=' + appKey +
-          '&name=TVC_Commit&expiration=30days&response_type=token&scope=read,write')
-    trelloToken = str(raw_input("Please enter key: "))
-    tr.set_token(trelloToken)
-    return tr
+	trello = TrelloApi(userpass.appKey)
+	file = open('Token', mode="r")
+	trelloDetails = file.readline().split(",")
+	file.close()
+	trello.set_token(trelloDetails[0])
+	return [trello,trelloDetails[1]]
 
 
 def getBoard():

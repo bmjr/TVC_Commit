@@ -21,7 +21,7 @@ def setUpAuth():
             print("Key Incorrect.\n\n")
 
     file = open('Token', mode="w")
-    file.write(trelloToken )
+    file.write(trelloToken)
     file.close()
     
     return trello
