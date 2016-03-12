@@ -23,7 +23,7 @@ def main():
 	f = open('Token',"a")
 	f.write("\n" + boardId)
 
-	return [trello,boardId]
+	return [trello, boardId]
 	
 
 if __name__ == '__main__':
