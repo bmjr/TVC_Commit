@@ -1,6 +1,7 @@
 from trello import TrelloApi
 import json
 import userpass
+import checklists
 boardId=""
 
 
@@ -22,6 +23,8 @@ def main():
 
 	f = open('Token',"a")
 	f.write("," + boardId)
+	
+	checklists.checkForLists(trello,boardId)
 
 	return [trello, boardId]
 	
