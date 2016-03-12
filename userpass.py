@@ -11,12 +11,13 @@ def setUpAuth():
             print("Please visit the following website and copy the key:")
             print('https://trello.com/1/authorize?key=' + appKey +
               '&name=TVC_Commit&expiration=30days&response_type=token&scope=read,write')
-            trelloToken = input("Please enter key:\n")
+            trelloToken = str(raw_input("Please enter key:\n"))
             trello.set_token(trelloToken)
             trello.tokens.get(trelloToken)
 
             break
-        except Exception:
+        except Exception as e:
+            print(e)
             print("Key Incorrect.\n\n")
 
     file = open('Token', mode="w")

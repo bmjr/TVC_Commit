@@ -9,7 +9,7 @@ def main():
 	trello = userpass.setUpAuth()
 
 	while(True):
-		board = input("Which board would you like to use?\n")
+		board = str(raw_input("Which board would you like to use?\n"))
 		boardsJson = trello.members.get_board("me")
 		boardId=""
 		for item in boardsJson:
