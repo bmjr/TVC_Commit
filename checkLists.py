@@ -1,6 +1,7 @@
 
 
 
+
 def checkForLists(trello,board):
 	foundTodo = False
 	foundinprog= False
@@ -17,14 +18,15 @@ def checkForLists(trello,board):
 			foundsubmitted= True
 		elif item['name']=="Done":
 			founddone=True
-	if(!founddone):
-		trello.boards.new_list(board,"Done")
-	if(!foundTodo):
+	if(foundTodo == False):
 		trello.boards.new_list(board,"TODO")
-	if(!foundinprog):
+	if(foundinprog==False):
 		trello.boards.new_list(board,"In-Progress")
-	if(!foundsubmitted):
+	if(foundsubmitted ==False):
 		trello.boards.new_list(board,"Submitted")
+	if(founddone ==False):
+		trello.boards.new_list(board,"Done")
+	
 
 
 def getDoneList(trello,board):
@@ -35,30 +37,30 @@ def getDoneList(trello,board):
 		if item['name']=="Done":
 			ID = item['id']
 			found=True
-	if(!found):
+	if(found ==False):
 		trello.boards.new_list(board,"Done")
 		lists = trello.boards.get_list(board)
 		for item in lists:
-		if item['name']=="Done":
-			ID = item['id']
+			if item['name']=="Done":
+				ID = item['id']
 
 	return ID
 
 
 def getTODOList(trello,board):
 	found = False
-	ID =""
+	ID =""	
 	lists = trello.boards.get_list(board)
 	for item in lists:
 		if item['name']=="TODO":
 			ID = item['id']
 			found=True
-	if(!found):
+	if(found==False):
 		trello.boards.new_list(board,"TODO")
 		lists = trello.boards.get_list(board)
 		for item in lists:
-		if item['name']=="TODO":
-			ID = item['id']
+			if item['name']=="TODO":
+				ID = item['id']
 
 	return ID
 
@@ -68,19 +70,19 @@ def getSubmittedList(trello,board):
 	ID =""
 	lists = trello.boards.get_list(board)
 	for item in lists:
-		if item['name']=="Submitted:"
+		if item['name']=="Submitted":
 			ID = item['id']
 			found=True
-	if(!found):
+	if(found== False):
 		trello.boards.new_list(board,"Submitted")
 		lists = trello.boards.get_list(board)
 		for item in lists:
-		if item['name']=="Submitted":
-			ID = item['id']
+			if item['name']=="Submitted":
+				ID = item['id']
 
 	return ID
 
-	def getInProgList(trello,board):
+def getInProgList(trello,board):
 	found = False
 	ID =""
 	lists = trello.boards.get_list(board)
@@ -88,12 +90,12 @@ def getSubmittedList(trello,board):
 		if item['name']=="In-Progress":
 			ID = item['id']
 			found=True
-	if(!found):
+	if(found == False):
 		trello.boards.new_list(board,"In-Progress")
 		lists = trello.boards.get_list(board)
 		for item in lists:
-		if item['name']=="In-Progress":
-			ID = item['id']
+			if item['name']=="In-Progress":
+				ID = item['id']
 
 	return ID
 
