@@ -1,5 +1,6 @@
 class TablePrinter(object):
     "Print a list of dicts as a table"
+
     def __init__(self, fmt, sep=' ', ul=None):
         """        
         @param fmt: list of tuple(heading, key, width)
@@ -7,16 +8,19 @@ class TablePrinter(object):
                         key: dictionary key to value to print
                         width: int, column width in chars
         @param sep: string, separation between columns
-        @param ul: string, character to underline column label, or None for no underlining
+        @param ul: string, character to underline column label, or None for no
+        underlining
         """
-        super(TablePrinter,self).__init__()
-        self.fmt   = str(sep).join('{lb}{0}:{1}{rb}'.format(key, width, lb='{', rb='}') for heading,key,width in fmt)
-        self.head  = {key:heading for heading,key,width in fmt}
-        self.ul    = {key:str(ul)*width for heading,key,width in fmt} if ul else None
-        self.width = {key:width for heading,key,width in fmt}
+        super(TablePrinter, self).__init__()
+        self.fmt = str(sep).join('{lb}{0}:{1}{rb}'.format(
+            key, width, lb='{', rb='}') for heading, key, width in fmt)
+        self.head = {key: heading for heading, key, width in fmt}
+        self.ul = {
+            key: str(ul) * width for heading, key, width in fmt} if ul else None
+        self.width = {key: width for heading, key, width in fmt}
 
     def row(self, data):
-        return self.fmt.format(**{ k:str(data.get(k,''))[:w] for k,w in self.width.iteritems() })
+        return self.fmt.format(**{k: str(data.get(k, ''))[:w] for k, w in self.width.iteritems()})
 
     def __call__(self, dataList):
         _r = self.row
@@ -25,19 +29,22 @@ class TablePrinter(object):
         if self.ul:
             res.insert(1, _r(self.ul))
         return '\n'.join(res)
-    
+
 data = [
-    {'classid':'foo', 'dept':'bar', 'coursenum':'foo', 'area':'bar', 'title':'foo'},
-    {'classid':'yoo', 'dept':'hat', 'coursenum':'yoo', 'area':'bar', 'title':'hat'},
-    {'classid':'yoo'*9, 'dept':'hat'*9, 'coursenum':'yoo'*9, 'area':'bar'*9, 'title':'hathat'*9}
+    {'classid': 'foo', 'dept': 'bar', 'coursenum': 'foo',
+        'area': 'bar', 'title': 'foo'},
+    {'classid': 'yoo', 'dept': 'hat', 'coursenum': 'yoo',
+        'area': 'bar', 'title': 'hat'},
+    {'classid': 'yoo' * 9, 'dept': 'hat' * 9, 'coursenum': 'yoo' * 9,
+        'area': 'bar' * 9, 'title': 'hathat' * 9}
 ]
 
 fmt = [
-    ('ClassID',       'classid',   11),
-    ('Dept',          'dept',       8),
+    ('ClassID', 'classid', 11),
+    ('Dept', 'dept', 8),
     ('Course Number', 'coursenum', 20),
-    ('Area',          'area',       8),
-    ('Title',         'title',     30)
+    ('Area', 'area', 8),
+    ('Title', 'title', 30)
 ]
 
-print( TablePrinter(fmt, ul='-')(data) )
+print(TablePrinter(fmt, ul='-')(data))
