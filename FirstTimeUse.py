@@ -1,6 +1,7 @@
 from trello import TrelloApi
 import json
 import userpass
+import checkLists
 boardId=""
 
 
@@ -9,7 +10,7 @@ def main():
 	trello = userpass.setUpAuth()
 
 	while(True):
-		board = input("Which board would you like to use?\n")
+		board = str(raw_input("Which board would you like to use?\n"))
 		boardsJson = trello.members.get_board("me")
 		boardId=""
 		for item in boardsJson:
@@ -21,9 +22,11 @@ def main():
 			break
 
 	f = open('Token',"a")
-	f.write("\n" + boardId)
+	f.write("," + boardId)
+	
+	checkLists.checkForLists(trello,boardId)
 
-	return [trello,boardId]
+	return [trello, boardId]
 	
 
 if __name__ == '__main__':
