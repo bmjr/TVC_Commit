@@ -6,3 +6,4 @@ def newTask(trello, boardID):
 	name = name +" [" +str(raw_input("Please add a branch name: "))+"]"
 	description = str(raw_input("desc of card:\n"))
 	trello.cards.new(name,listId,description)
+	raw_input("Card Added. Press Enter to Continue")
