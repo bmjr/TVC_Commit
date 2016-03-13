@@ -22,6 +22,7 @@ def reviewTask(trello,board):
 			shell_engine.runShellCommand("git merge " + cardBranchName)
 			shell_engine.runShellCommand("git push")
 			shell_engine.runShellCommand("git branch -D " + cardBranchName)
+			shell_engine.runShellCommand("git push origin :"+cardBranchName)
 			break
 		elif ans.lower()== "n":
 			progId = checkLists.getInProgList(trello,board)	
