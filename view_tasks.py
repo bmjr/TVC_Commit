@@ -9,7 +9,7 @@ def viewTasks(trello, board):
 		count = count +1
 	while True:
 		view = int(raw_input("Which list would you like to view? "))
-		viewlist = trello.lists.get_card(item[view]['id'])
+		viewlist = trello.lists.get_card(lists[view]['id'])
 		for item in viewlist:
 			print("{} {}".format(item['name'],item["desc"]))
 		y = str(raw_input("Finished viewing lists (y/n): "))
