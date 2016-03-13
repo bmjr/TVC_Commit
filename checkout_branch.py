@@ -3,9 +3,10 @@ import shell_engine
 
 
 def getBranchName(cardTitle):
-    m = re.search('(?:\[)+.+(?:\])', cardTitle)
-    if m:
-        branchName = m.group(1)
+    brackets = re.search('\[([A-Za-z0-9_]+)\]',cardTitle)
+    if brackets:
+        branchName = brackets.group(1)
+
         # Test the output of this function
         return branchName
 

@@ -1,5 +1,7 @@
 import shell_engine
 import add_task
+import start_task
+import submit_task
 import userpass
 from trello import TrelloApi
 
@@ -18,10 +20,14 @@ def add():
 
 def start():
     print("start")
+    initArray = init()
+    start_task.startTask(initArray[0], initArray[1])
 
 
 def submit():
     print("submit")
+    initArray = init()
+    submit_task.submitTask(initArray[0], initArray[1])
 
 
 def review():
@@ -55,10 +61,10 @@ if __name__ == '__main__':
     Welcome to the TVC main menu
     ============================
     1 - View Tasks in To do
-    2 - Add Task"
-    3 - Start Task"
-    4 - Submit Task"
-    5 - Review Task"
+    2 - Add Task
+    3 - Start Task
+    4 - Submit Task
+    5 - Review Task
     ============================
     """)
     choice = int(raw_input("Please Enter Your Choice: "))
