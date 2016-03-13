@@ -2,6 +2,7 @@ import shell_engine
 import add_task
 import start_task
 import submit_task
+import review_task
 import userpass
 from trello import TrelloApi
 
@@ -32,6 +33,8 @@ def submit():
 
 def review():
     print("review")
+    initArray = init()
+    review_task.reviewTask(initArray[0], initArray[1])
 
 
 def init():

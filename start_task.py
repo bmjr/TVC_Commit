@@ -1,9 +1,19 @@
 import checkout_branch
 import checkLists
+import PrintTest
 
 def startTask(trello,boardID):
 	listID = checkLists.getTODOList(trello,boardID)
 	toDoCards = trello.lists.get_card(listID)
+
+	
+	fmt = [
+    ('card name', 'name', 11),
+    ('description', 'desc', 20),
+    ('Last edited', 'dateLastActivity', 20)
+	]
+
+	print(PrintTest.TablePrinter(fmt, ul='-')(toDoCards))
 
 	count = 0
 	for card in toDoCards:
