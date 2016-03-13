@@ -10,11 +10,16 @@ def reviewTask(trello,board):
 
 	indexSelected = int(raw_input("Select card to review: "))
 	cardId= cards[indexSelected]['id']
+	cardBranchName = checkout_branch.getBranchName(cards[indexSelected]['name'])
 	while (True):
 		ans = str(raw_input("Accept submitted solution [y/n]: "))
 		if ans.lower() == "y":		
 			doneId = checkLists.getDoneList(trello,board)	
 			trello.cards.update_idList(cardId, doneId)
+			shell_engine.runShellCommand("git add -A")
+			shell_engine.runShellCommand("git commit -m 'Preparing for merge'")
+			shell_engine.runShellCommand("git checkout master")
+			shell_engine.runShellCommand("git merge " + cardBranchName)
 			break
 		elif ans.lower()== "n":
 			progId = checkLists.getInProgList(trello,board)	
