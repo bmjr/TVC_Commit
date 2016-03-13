@@ -52,26 +52,30 @@ def getBoard():
     boardID = str(raw_input("Please enter board id: "))
     return boardID
 
+def exit():
+    sys.exit(0)
+
 options = {
     1: view,
     2: add,
     3: start,
     4: submit,
     5: review,
+    6: exit
 }
 
 if __name__ == '__main__':
-
-    print("""
-    Welcome to the TVC main menu
-    ============================
-    1 - View Tasks in To do
-    2 - Add Task
-    3 - Start Task
-    4 - Submit Task
-    5 - Review Task
-    ============================
-    """)
-    choice = int(raw_input("Please Enter Your Choice: "))
-    shell_engine.runShellCommand("clear")
-    options[choice]()
+    while True:
+        print("""
+        Welcome to the TVC main menu
+        ============================
+        1 - View Tasks in To do
+        2 - Add Task
+        3 - Start Task
+        4 - Submit Task
+        5 - Review Task
+        ============================
+        """)
+        choice = int(raw_input("Please Enter Your Choice: "))
+        shell_engine.runShellCommand("clear")
+        options[choice]()
