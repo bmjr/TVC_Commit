@@ -20,6 +20,8 @@ def reviewTask(trello,board):
 			trello.cards.update_idList(cardId, doneId)
 			shell_engine.runShellCommand("git checkout master")
 			shell_engine.runShellCommand("git merge " + cardBranchName)
+			shell_engine.runShellCommand("git push")
+			shell_engine.runShellCommand("git branch -D " + cardBranchName)
 			break
 		elif ans.lower()== "n":
 			progId = checkLists.getInProgList(trello,board)	

@@ -14,3 +14,4 @@ def getBranchName(cardTitle):
 def createBranch(branchName):
     checkoutBranch = "git checkout -b " + branchName
     shell_engine.runShellCommand(checkoutBranch)
+    shell_engine.runShellCommand("git push origin " + branchName)
