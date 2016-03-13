@@ -14,7 +14,7 @@ def submitTask(trello,board):
 	submitId = checkLists.getSubmittedList(trello,board)	
 	trello.cards.update_idList(cardId, submitId)
 	comment= str(raw_input("Comment for final Commit: "))
-	cmd = "git commit -a -m " + "'"+comment+"'"
+	cmd = 'git commit -a -m ' + '"'+comment+'"'
 	print (cmd)
 	shell_engine.runShellCommand(cmd)
 	trello.cards.new_action_comment(cardId,cmd)
