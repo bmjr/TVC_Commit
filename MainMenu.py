@@ -62,7 +62,7 @@ options = {
 
 if __name__ == '__main__':
 	while True:
-		shell_engine.runClearCommand()
+		#shell_engine.runClearCommand()
 		print("""
 
 	Welcome to the TVC main menu

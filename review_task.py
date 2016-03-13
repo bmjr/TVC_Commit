@@ -1,4 +1,6 @@
 import checkLists
+import checkout_branch
+import shell_engine
 
 def reviewTask(trello,board):
 	listid = checkLists.getSubmittedList(trello,board)
@@ -16,8 +18,6 @@ def reviewTask(trello,board):
 		if ans.lower() == "y":		
 			doneId = checkLists.getDoneList(trello,board)	
 			trello.cards.update_idList(cardId, doneId)
-			shell_engine.runShellCommand("git add -A")
-			shell_engine.runShellCommand("git commit -m 'Preparing for merge'")
 			shell_engine.runShellCommand("git checkout master")
 			shell_engine.runShellCommand("git merge " + cardBranchName)
 			break
