@@ -60,17 +60,18 @@ options = {
 }
 
 if __name__ == '__main__':
-    while True:
-        print("""
-        Welcome to the TVC main menu
-        ============================
-        1 - View Tasks in To do
-        2 - Add Task
-        3 - Start Task
-        4 - Submit Task
-        5 - Review Task
-        ============================
-        """)
-        choice = int(raw_input("Please Enter Your Choice: "))
-        shell_engine.runShellCommand("clear")
-        options[choice]()
+	while True:
+		shell_engine.runClearCommand()
+		print("""
+		Welcome to the TVC main menu
+		============================
+		1 - View Tasks in To do
+		2 - Add Task
+		3 - Start Task
+		4 - Submit Task
+		5 - Review Task
+		============================
+		""")
+		choice = int(raw_input("Please Enter Your Choice: "))
+		shell_engine.runClearCommand()
+		options[choice]()

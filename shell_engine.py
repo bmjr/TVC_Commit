@@ -11,6 +11,9 @@ def runShellCommand(command):
     output = process.communicate()[0]
     return output
 
+def runClearCommand():
+    subprocess.call('clear',shell=True)
+
 
 def runShellScript(script):
     # Read the file and close it when done

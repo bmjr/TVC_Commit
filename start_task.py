@@ -16,7 +16,7 @@ def startTask(trello,boardID):
 		count = count + 1
 	
 	fmt = [
-	('INDEX', 'index', 30),
+	('INDEX', 'index', 10),
     ('CARD NAME', 'name', 30),
     ('BRANCH NAME', 'branchName', 20),
     ('DESCRIPTION', 'desc', 60),
