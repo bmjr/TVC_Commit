@@ -11,12 +11,12 @@ import FirstTimeUse
 from trello import TrelloApi
 
 appKey = "bbe4f72dcc11de483fec87b87db05532"
-trello = ""
-boardID=""
+trello = TrelloApi(appKey)
+boardID= ""
 
 
 def view():  
-    view_tasks.viewTasks(trello, boardID)
+	view_tasks.viewTasks(trello, boardID)
 
 def add():
     add_task.newTask(trello, boardID)
@@ -37,12 +37,14 @@ def review():
 def init():
     if os.path.isfile("Token") ==False:
         FirstTimeUse.main()
+    global trello
     trello = TrelloApi(userpass.appKey)
     file = open('Token', mode="r")
     trelloDetails = file.readline().split(",")
     file.close()
     trello.set_token(trelloDetails[0])
-    boardID= trelloDetails[0]
+    global boardID
+    boardID = trelloDetails[1]
     return [trello,trelloDetails[1]]
 
 def exit():
