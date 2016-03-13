@@ -30,21 +30,3 @@ class TablePrinter(object):
             res.insert(1, _r(self.ul))
         return '\n'.join(res)
 
-data = [
-    {'classid': 'foo', 'dept': 'bar', 'coursenum': 'foo',
-        'area': 'bar', 'title': 'foo'},
-    {'classid': 'yoo', 'dept': 'hat', 'coursenum': 'yoo',
-        'area': 'bar', 'title': 'hat'},
-    {'classid': 'yoo' * 9, 'dept': 'hat' * 9, 'coursenum': 'yoo' * 9,
-        'area': 'bar' * 9, 'title': 'hathat' * 9}
-]
-
-fmt = [
-    ('ClassID', 'classid', 11),
-    ('Dept', 'dept', 8),
-    ('Course Number', 'coursenum', 20),
-    ('Area', 'area', 8),
-    ('Title', 'title', 30)
-]
-
-print(TablePrinter(fmt, ul='-')(data))
