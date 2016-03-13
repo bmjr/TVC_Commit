@@ -9,12 +9,14 @@ def startTask(trello,boardID):
 
 	count = 0
 	for card in toDoCards:
+		card['index'] = count
 		card['branchName'] = checkout_branch.getBranchName(card['name'])
 		card['due'] = generateDateString(str(card['due']))
 		card['dateLastActivity'] = generateDateString(str(card['dateLastActivity']))
 		count = count + 1
 	
 	fmt = [
+	('INDEX', 'index', 30),
     ('CARD NAME', 'name', 30),
     ('BRANCH NAME', 'branchName', 20),
     ('DESCRIPTION', 'desc', 60),
@@ -26,10 +28,14 @@ def startTask(trello,boardID):
 
 	
 		
-	indexSelected = int(raw_input("Select the card number: "))
+	indexSelected = int(raw_input("Select the card index: "))
 	selectedCard = toDoCards[indexSelected]['name']
+	cardId = toDoCards[indexSelected]['id']
+	startId = checkLists.getInProgList(trello,boardID)
+	trello.cards.update_idList(cardId, startId)
 	branchName = str(checkout_branch.getBranchName(selectedCard))
 	checkout_branch.createBranch(branchName)
+
 
 def generateDateString(string):
 	if string != "None":

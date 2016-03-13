@@ -11,30 +11,25 @@ appKey = "bbe4f72dcc11de483fec87b87db05532"
 
 
 def view():
-    print("view")
     initArray = init()
     view_tasks.viewTasks(initArray[0], initArray[1])
 
 def add():
-    print("add")
     initArray = init()
     add_task.newTask(initArray[0], initArray[1])
 
 
 def start():
-    print("start")
     initArray = init()
     start_task.startTask(initArray[0], initArray[1])
 
 
 def submit():
-    print("submit")
     initArray = init()
     submit_task.submitTask(initArray[0], initArray[1])
 
 
 def review():
-    print("review")
     initArray = init()
     review_task.reviewTask(initArray[0], initArray[1])
 
