@@ -26,8 +26,12 @@ def setUpAuth():
     
     return trello
 
-def getnamepass():
 
+def checkAuth(trello,board):
+    trello.tokens.get(trello._token)
+
+
+def getnamepass():
     name = input("Please Enter Your username:\n")
     psswrd = input("Please Enter Your Password:\n")
     return [name, psswrd]

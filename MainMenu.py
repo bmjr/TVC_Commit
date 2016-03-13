@@ -6,47 +6,44 @@ import review_task
 import userpass
 import view_tasks
 import sys
+import os.path
+import FirstTimeUse
 from trello import TrelloApi
 
 appKey = "bbe4f72dcc11de483fec87b87db05532"
+trello = ""
+boardID=""
 
 
-def view():
-    initArray = init()
-    view_tasks.viewTasks(initArray[0], initArray[1])
+def view():  
+    view_tasks.viewTasks(trello, boardID)
 
 def add():
-    initArray = init()
-    add_task.newTask(initArray[0], initArray[1])
+    add_task.newTask(trello, boardID)
 
 
 def start():
-    initArray = init()
-    start_task.startTask(initArray[0], initArray[1])
+    start_task.startTask(trello, boardID)
 
 
 def submit():
-    initArray = init()
-    submit_task.submitTask(initArray[0], initArray[1])
+    submit_task.submitTask(trello, boardID)
 
 
 def review():
-    initArray = init()
-    review_task.reviewTask(initArray[0], initArray[1])
+    review_task.reviewTask(trello, boardID)
 
 
 def init():
-	trello = TrelloApi(userpass.appKey)
-	file = open('Token', mode="r")
-	trelloDetails = file.readline().split(",")
-	file.close()
-	trello.set_token(trelloDetails[0])
-	return [trello,trelloDetails[1]]
-
-
-def getBoard():
-    boardID = str(raw_input("Please enter board id: "))
-    return boardID
+    if os.path.isfile("Token") ==False:
+        FirstTimeUse.main()
+    trello = TrelloApi(userpass.appKey)
+    file = open('Token', mode="r")
+    trelloDetails = file.readline().split(",")
+    file.close()
+    trello.set_token(trelloDetails[0])
+    boardID= trelloDetails[0]
+    return [trello,trelloDetails[1]]
 
 def exit():
     sys.exit(0)
@@ -61,9 +58,10 @@ options = {
 }
 
 if __name__ == '__main__':
-	while True:
-		shell_engine.runClearCommand()
-		print("""
+    init()
+    while True:
+        shell_engine.runClearCommand()
+        print("""
 
 	Welcome to the TVC main menu
 	============================
@@ -75,5 +73,5 @@ if __name__ == '__main__':
 	6 - exit
 	============================
 		""")
-		choice = int(raw_input("Please Enter Your Choice: "))
-		options[choice]()
+        choice = int(raw_input("Please Enter Your Choice: "))
+        options[choice]()
