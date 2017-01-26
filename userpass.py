@@ -10,7 +10,7 @@ def setUpAuth():
         try:
             print("Please visit the following website and copy the key:")
             print('https://trello.com/1/authorize?key=' + appKey +
-              '&name=TVC_Commit&expiration=30days&response_type=token&scope=read,write')
+              '&name=TVC_Commit&expiration=100days&response_type=token&scope=read,write')
             trelloToken = str(raw_input("Please enter key:\n"))
             trello.set_token(trelloToken)
             trello.tokens.get(trelloToken)
